@@ -21,36 +21,21 @@ mongoose
 const authRoutes = require("./routes/auth.routes");
 const productRoutes = require("./routes/product.routes");
 
-// app.use(cors());
+app.use(cors());
 
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*"); //* to give access to any origin
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept, Authorization" //to give access to all the headers provided
-//   );
-//   if (req.method === "OPTIONS") {
-//     res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET"); //to give access to all the methods provided
-//     return res.status(200).json({});
-//   }
-//   next(); //so that other routes can take over
-// });
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); //* to give access to any origin
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization" //to give access to all the headers provided
+  );
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET"); //to give access to all the methods provided
+    return res.status(200).json({});
+  }
+  next(); //so that other routes can take over
+});
 
-app.use(
-  cors({
-    origin: true,
-    optionsSuccessStatus: 200,
-    credentials: true,
-  })
-);
-app.options(
-  "*",
-  cors({
-    origin: true,
-    optionsSuccessStatus: 200,
-    credentials: true,
-  })
-);
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 app.use("/api/auth", authRoutes);
