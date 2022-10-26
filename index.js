@@ -24,19 +24,17 @@ const productRoutes = require("./routes/product.routes");
 app.use(cors());
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); //* to give access to any origin
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
   res.header(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization" //to give access to all the headers provided
+    "Origin,X-Requested-With,Content-Type,Accept,content-type,application/json"
   );
-  if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET"); //to give access to all the methods provided
-    return res.status(200).json({});
-  }
-  next(); //so that other routes can take over
+  next();
 });
 
-app.use("/uploads", express.static("uploads"));
+app.use("/public/uploads", express.static("uploads"));
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/product", productRoutes);

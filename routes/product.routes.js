@@ -6,12 +6,13 @@ const {
   remove,
   fetchAllProducts,
 } = require("../controllers/product");
+const path = require("path");
 
 const Auth = require("../middleware/auth.middleware");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "/uploads/"));
+    cb(null, "/uploads/");
   },
   filename: function (req, file, cb) {
     cb(
