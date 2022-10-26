@@ -1,12 +1,15 @@
 const { mongoose } = require("mongoose");
 const Product = require("../models/Product.model");
 const User = require("../models/User.model");
+const cloudinary = require("../utils/cloudinary");
 
 exports.create = async (req, res, next) => {
+  const result = await cloudinary.uploader.upload(req.file.path);
+
   const product = new Product({
     sku: req.body.sku,
     title: req.body.title,
-    image: req.file.path,
+    image: result.url,
     user: req.user._id,
   });
   product

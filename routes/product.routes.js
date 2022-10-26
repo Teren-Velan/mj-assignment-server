@@ -1,4 +1,5 @@
 const express = require("express");
+
 const router = express.Router();
 const {
   create,
@@ -6,22 +7,11 @@ const {
   remove,
   fetchAllProducts,
 } = require("../controllers/product");
-const path = require("path");
+
+const upload = require("../utils/multer");
 
 const Auth = require("../middleware/auth.middleware");
-const multer = require("multer");
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "../public/uploads"));
-  },
-  filename: function (req, file, cb) {
-    cb(
-      null,
-      new Date().toISOString().replace(/[\/\\:]/g, "_") + file.originalname
-    );
-  },
-});
-const upload = multer({ storage: storage });
+
 router.get("/", Auth, fetchAllProducts);
 router.post("/create", Auth, upload.single("image"), create);
 router.put("/update/:id", Auth, upload.single("image"), update);
