@@ -2,8 +2,13 @@ const express = require("express");
 const router = express.Router();
 const { signin, signinWithToken } = require("../controllers/auth");
 const Auth = require("../middleware/auth.middleware");
+const cors = require("../utils/cors");
 
-router.post("/signin", signin);
+router
+  .options(cors.corsWithOptions, (req, res) => {
+    res.sendStatus(200);
+  })
+  .post("/signin", signin);
 router.get("/", Auth, signinWithToken);
 // router.post("/signup", signup);
 

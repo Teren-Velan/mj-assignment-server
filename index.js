@@ -21,16 +21,17 @@ mongoose
 const authRoutes = require("./routes/auth.routes");
 const productRoutes = require("./routes/product.routes");
 
-var corsOptions = {
-  origin: [
-    "https://mighty-assignment.netlify.app",
-    "https://mighty-assignment.netlify.app/",
-    "http://localhost:3000",
-    "http://localhost:3000/",
-  ],
-  optionsSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+// var corsOptions = {
+//   origin: [
+//     "https://mighty-assignment.netlify.app",
+//     "https://mighty-assignment.netlify.app/",
+//     "http://localhost:3000",
+//     "http://localhost:3000/",
+//   ],
+//   optionsSuccessStatus: 200,
+//   withCredentials,
+// };
+app.use(cors());
 
 // app.use(function (req, res, next) {
 //   let allowedOrigins = [
