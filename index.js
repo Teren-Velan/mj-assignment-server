@@ -38,7 +38,7 @@ app.use(function (req, res, next) {
   next(); //so that other routes can take over
 });
 
-app.use("/public/uploads", express.static("uploads"));
+app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/product", productRoutes);
