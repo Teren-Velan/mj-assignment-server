@@ -48,7 +48,7 @@ app.use(function (req, res, next) {
   next(); //so that other routes can take over
 });
 
-// app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static("uploads"));
 app.use(express.static(__dirname));
 app.use(express.json());
 app.use("/api/auth", authRoutes);
