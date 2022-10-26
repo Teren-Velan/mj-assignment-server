@@ -24,11 +24,18 @@ const productRoutes = require("./routes/product.routes");
 app.use(cors());
 
 app.use(function (req, res, next) {
-  console.log({ res });
-  res.header("Access-Control-Allow-Origin", [
-    "https://mighty-assignment.netlify.app",
-    "https://mighty-assignment.netlify.app/",
-  ]); //* to give access to any origin
+  let allowedOrigins = [
+    [
+      "https://mighty-assignment.netlify.app",
+      "https://mighty-assignment.netlify.app/",
+      "http://localhost:3000",
+      "http://localhost:3000/",
+    ],
+  ];
+  let origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.header("Access-Control-Allow-Origin", origin); // restrict it to the required domain
+  }
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, Authorization" //to give access to all the headers provided
