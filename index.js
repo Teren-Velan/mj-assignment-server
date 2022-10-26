@@ -48,8 +48,8 @@ app.use(function (req, res, next) {
   next(); //so that other routes can take over
 });
 
-app.use("/uploads", express.static("uploads"));
-app.use(express.static(__dirname));
+let publicPath = path.join(__dirname, "../public");
+app.use(express.static(publicPath));
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/product", productRoutes);

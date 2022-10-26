@@ -12,7 +12,7 @@ const Auth = require("../middleware/auth.middleware");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./uploads/");
+    cb(null, path.join(__dirname, "../public/uploads"));
   },
   filename: function (req, file, cb) {
     cb(
@@ -22,7 +22,6 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage: storage });
-
 router.get("/", Auth, fetchAllProducts);
 router.post("/create", Auth, upload.single("image"), create);
 router.put("/update/:id", Auth, upload.single("image"), update);
