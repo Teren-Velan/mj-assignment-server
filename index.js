@@ -21,7 +21,8 @@ mongoose
 const authRoutes = require("./routes/auth.routes");
 const productRoutes = require("./routes/product.routes");
 
-app.use(cors());
+app.use(cors({ origin: "https://mighty-assignment.netlify.app" }));
+
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
