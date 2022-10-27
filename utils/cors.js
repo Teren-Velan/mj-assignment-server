@@ -11,12 +11,9 @@ const allowedOrigins = [
 
 let corsOptionsDelegate = (req, callback) => {
   let corsOptions;
-  console.log(req.header("Origin"));
   if (allowedOrigins.indexOf(req.header("Origin")) !== -1) {
-    console.log(123);
     corsOptions = { origin: true };
   } else {
-    console.log(123333);
     corsOptions = { origin: false };
   }
   callback(null, corsOptions);

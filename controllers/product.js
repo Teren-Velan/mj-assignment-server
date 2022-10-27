@@ -19,8 +19,8 @@ exports.create = async (req, res, next) => {
         result,
       });
     })
-    .catch((err) => {
-      console.log({ err });
+    .catch((error) => {
+      console.log({ error });
       return res.status(500).json({
         error: { message: err },
       });
@@ -60,8 +60,8 @@ exports.update = async (req, res, next) => {
         });
       }
     })
-    .catch((err) => {
-      console.log({ err });
+    .catch((error) => {
+      console.log({ error });
       return res.status(500).json({
         error: err,
       });
@@ -83,8 +83,8 @@ exports.remove = async (req, res, next) => {
         });
       }
     })
-    .catch((err) => {
-      console.log({ err });
+    .catch((error) => {
+      console.log({ error });
       return res.status(500).json({
         error: err,
       });
