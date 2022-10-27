@@ -1,5 +1,4 @@
 const express = require("express");
-
 const router = express.Router();
 const {
   create,
@@ -7,9 +6,7 @@ const {
   remove,
   fetchAllProducts,
 } = require("../controllers/product");
-
 const upload = require("../utils/multer");
-
 const Auth = require("../middleware/auth.middleware");
 
 router.get("/", Auth, fetchAllProducts);

@@ -1,8 +1,7 @@
-const { mongoose } = require("mongoose");
 const Product = require("../models/Product.model");
-const User = require("../models/User.model");
 const cloudinary = require("../utils/cloudinary");
 
+//create api
 exports.create = async (req, res, next) => {
   const result = await cloudinary.uploader.upload(req.file.path);
 
@@ -27,7 +26,7 @@ exports.create = async (req, res, next) => {
       });
     });
 };
-
+//update api
 exports.update = async (req, res, next) => {
   let id = req.params.id;
 
@@ -68,7 +67,7 @@ exports.update = async (req, res, next) => {
       });
     });
 };
-
+//delete api
 exports.remove = async (req, res, next) => {
   let id = req.params.id;
   await Product.findByIdAndDelete(id)
@@ -91,7 +90,7 @@ exports.remove = async (req, res, next) => {
       });
     });
 };
-
+//fetch all api
 exports.fetchAllProducts = async (req, res, next) => {
   await Product.find({ user: req.user._id })
     .then((result) => {

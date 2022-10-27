@@ -3,56 +3,7 @@ const jwt = require("jsonwebtoken");
 const { mongoose } = require("mongoose");
 const Product = require("../models/Product.model");
 
-// exports.signup = (req, res) => {
-//   console.log({ body: req });
-//   User.findOne({ email: req?.body?.email })
-//     // call back funtion means , it either gets back an error or your user that you looking for , so create a if statement for handling both cases
-//     .exec((error, user) => {
-//       //check if user is registered, if registered:
-//       if (user)
-//         return res.status(400).json({
-//           message: "User already registered",
-//         });
-//       // destructuring the req.body
-//       const { email, password } = req.body;
-//       // if user not registered then we need to register user
-//       // create new instance of the user
-//       const _user = new User({
-//         email,
-//         password,
-//       });
-
-//       // save the new instance of user to db
-//       _user.save((error, data) => {
-//         if (error) {
-//           console.log(error);
-//           return res.status(400).json({
-//             message: "Something unexpected has happened",
-//           });
-//         }
-
-//         if (data) {
-//           const token = jwt.sign({ _id: data._id }, process.env.JWT_SECRET, {
-//             expiresIn: "365d",
-//           });
-
-//           const { _id, email, fullname } = data;
-
-//           res.status(200).json({
-//             token,
-//             data: {
-//               _id,
-//               email,
-//               fullname,
-//             },
-//           });
-//         }
-//       });
-//     });
-// };
-
-// const User = mongoose.model("User", User);
-
+//signin api
 exports.signin = async (req, res) => {
   let user;
   let productList;
@@ -103,7 +54,7 @@ exports.signin = async (req, res) => {
     });
   }
 };
-
+//signin with token api
 exports.signinWithToken = async (req, res) => {
   let user;
   let productList;
