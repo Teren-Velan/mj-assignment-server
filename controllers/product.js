@@ -3,12 +3,12 @@ const cloudinary = require("../utils/cloudinary");
 
 //create api
 exports.create = async (req, res, next) => {
-  const result = await cloudinary.uploader.upload(req.file.path);
+  const result = await cloudinary.uploader.upload(req?.file?.path);
 
   const product = new Product({
     sku: req.body.sku,
     title: req.body.title,
-    image: result.url,
+    image: result.secure_url,
     user: req.user._id,
   });
   product
@@ -22,7 +22,7 @@ exports.create = async (req, res, next) => {
     .catch((error) => {
       console.log({ error });
       return res.status(500).json({
-        error: { message: err },
+        error: { message: error },
       });
     });
 };
